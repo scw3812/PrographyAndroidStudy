@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#287EF9</color> <!-- 메인 컬러-->
+    <color name="colorPrimaryDark">#13274A</color> <!-- 주로 제목텍스트 컬러 -->
+    <color name="colorAccent">#FFB401</color> <!-- 하이라이트 컬러1 -->
+    <color name="colorAccent2">#F35748</color> <!-- 하이라이트 컬러2 -->
+    <color name="colorMyPageTitleText">#525963</color> <!-- My계정 페이지 상단 텍스트 컬러 -->
+    <color name="colorGrey">#85909F</color> <!-- Disabled 컬러 -->
+    <color name="colorBackground">#F1F2F6</color> <!-- BackGround 컬러 (구분선) -->
+    <color name="colorWhite">#FFFFFF</color> <!-- White -->
+</resources>

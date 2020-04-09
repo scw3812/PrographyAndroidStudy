@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".ServiceActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/service_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginBottom="675dp"
+        android:background="@color/colorWhite"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="고객센터" />
+
+    <RelativeLayout
+        android:id="@+id/service_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="616dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_toolbar"
+        android:background="@color/colorWhite"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/chat_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="채팅 서비스"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/chat_subtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_text"
+            android:text="09:00 ~19:00 (한국시간), 연중무휴"
+            android:textSize="13sp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chat_black_18dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/chat_text"
+            android:layout_alignBottom="@+id/chat_subtext"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="555dp"
+        android:background="@color/colorWhite"
+        android:drawableRight="@drawable/ic_mail_black_18dp"
+        android:padding="10dp"
+        android:text="이메일 문의"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_chat" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="504dp"
+        android:background="@color/colorWhite"
+        android:drawableRight="@drawable/ic_help_outline_black_18dp"
+        android:padding="10dp"
+        android:text="FAQ (자주하는질문)"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <RelativeLayout
+        android:id="@+id/service_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:id="@+id/call_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="채팅 서비스"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/call_subtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="더 보기"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/service_internet_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="374dp"
+        android:background="@color/colorWhite"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_call">
+
+        <TextView
+            android:id="@+id/service_internet_call_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인터넷 전화"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/service_internet_call_subtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/service_internet_call_text"
+            android:text="통신비 절약을 위해, 무선인터넷이 가능한 장소에서\n인터넷 전화를 이용하시는 것을 권장해드립니다."
+            android:textSize="13sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/service_internet_call_text"
+            android:layout_alignBottom="@+id/service_internet_call_subtext"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_phone_in_talk_black_18dp" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
