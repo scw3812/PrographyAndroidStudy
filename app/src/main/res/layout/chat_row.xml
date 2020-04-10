@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recycler_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
@@ -13,12 +13,8 @@
         android:layout_height="50dp"
         android:layout_marginBottom="22dp"
         android:src="@drawable/ic_perm_identity_black_18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/recycler_text_tripcom"
-        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/recycler_text_tripcom"
@@ -26,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="트립닷컴 챗봇"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_message"
         app:layout_constraintStart_toEndOf="@+id/recycler_image"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +35,6 @@
         android:maxWidth="200dp"
         android:padding="5dp"
         android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/recycler_image"
         app:layout_constraintTop_toBottomOf="@+id/recycler_text_tripcom"/>
 
@@ -49,13 +43,9 @@
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="114dp"
         android:src="@drawable/ic_thumb_up_alt_white_18dp"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_down"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/recycler_message"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/recycler_message"/>
 
     <ImageView
         android:id="@+id/recycler_down"
@@ -63,11 +53,7 @@
         android:layout_height="15dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="114dp"
-        android:layout_marginBottom="80dp"
         android:src="@drawable/ic_thumb_down_alt_white_18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/recycler_message"
         app:layout_constraintTop_toBottomOf="@+id/recycler_up" />
 </androidx.constraintlayout.widget.ConstraintLayout>
