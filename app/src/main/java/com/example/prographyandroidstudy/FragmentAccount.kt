@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FragmentAccount.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentAccount : Fragment(), View.OnClickListener {
+class FragmentAccount : Fragment(), View.OnClickListener, AppBarLayout.OnOffsetChangedListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -41,13 +41,8 @@ class FragmentAccount : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_account, container, false)
         view.findViewById<TextView>(R.id.account_service_text).setOnClickListener(this)
-        setHasOptionsMenu(true)
+        view.findViewById<AppBarLayout>(R.id.account_appbar).addOnOffsetChangedListener(this)
         return view
-    }
-
-    override fun onResume() {
-        super.onResume()
-        activity?.invalidateOptionsMenu()
     }
 
     companion object {
@@ -74,9 +69,13 @@ class FragmentAccount : Fragment(), View.OnClickListener {
         context?.startActivity(Intent(context, ServiceActivity::class.java))
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.account_toolbar_menu, menu)
+    override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+        if(appBarLayout!!.totalScrollRange == 0 || verticalOffset == 0){
+            account_toolbar.alpha = 0f
+            return
+        }
+        val ratio:Float = verticalOffset.toFloat() / appBarLayout.totalScrollRange.toFloat()
+        account_toolbar.alpha = Math.abs(ratio)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
