@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TripRecyclerAdapter(val context: Context?, val tripList: List<TripData>): RecyclerView.Adapter<TripRecyclerAdapter.TripViewHolder>() {
+class TripRecyclerAdapter(val context: Context?, private val tripList: TripData): RecyclerView.Adapter<TripRecyclerAdapter.TripViewHolder>() {
     class TripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val textView:TextView = itemView.findViewById(R.id.trip_recycler_text)
     }
@@ -18,10 +18,10 @@ class TripRecyclerAdapter(val context: Context?, val tripList: List<TripData>): 
     }
 
     override fun getItemCount(): Int {
-        return tripList.size
+        return tripList.cities.size
     }
 
     override fun onBindViewHolder(holder: TripViewHolder, position: Int) {
-        holder.textView.setText(tripList.get(position).tripName)
+        holder.textView.text = tripList.cities[position].city
     }
 }

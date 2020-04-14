@@ -1,6 +1,9 @@
 package com.example.prographyandroidstudy
 
+
+import com.google.gson.annotations.SerializedName
+
 data class TripData(
-    val tripName : String = "",
-    val tripImage : String = ""
+    @SerializedName("cities")
+    val cities: List<City>
 )

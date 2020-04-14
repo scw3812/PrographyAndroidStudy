@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener{
 
     override fun onTabSelected(tab: TabLayout.Tab?) {
         when(tab?.position){
-            0 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentHome()).addToBackStack(null).commit()
-            1 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentPromotion()).addToBackStack(null).commit()
-            2 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentTrip()).addToBackStack(null).commit()
-            3 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentAccount()).addToBackStack(null).commit()
+            0 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentHome()).commit()
+            1 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentPromotion()).commit()
+            2 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentTrip()).commit()
+            3 -> supportFragmentManager.beginTransaction().replace(R.id.main_fragment_container, FragmentAccount()).commit()
         }
     }
 }

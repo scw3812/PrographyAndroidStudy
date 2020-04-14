@@ -1,6 +1,5 @@
 package com.example.prographyandroidstudy
 
-import android.app.ActionBar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,9 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.fragment_account.*
 import kotlinx.android.synthetic.main.fragment_trip.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,17 +45,27 @@ class FragmentTrip : Fragment(), AppBarLayout.OnOffsetChangedListener {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_trip, container, false)
         view.findViewById<AppBarLayout>(R.id.trip_appbar).addOnOffsetChangedListener(this)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.trip_recycler)
-        val layoutManager = LinearLayoutManager(container?.context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = layoutManager
-        var list : List<TripData> = arrayListOf<TripData>(
-            TripData("서울"),
-            TripData("제주"),
-            TripData("부산"),
-            TripData("강원")
-        )
-        recyclerView.adapter = TripRecyclerAdapter(container?.context, list)
+
+        val retrofit = Retrofit.Builder().baseUrl("https://progserver.herokuapp.com")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        val result = retrofit.create(RemoteService::class.java).getTrips()
+        result.enqueue(object : Callback<TripData>{
+            override fun onFailure(call: Call<TripData>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<TripData>, response: Response<TripData>) {
+                if(response.isSuccessful){
+                    val body = response.body()
+                    val recyclerView = view.findViewById<RecyclerView>(R.id.trip_recycler)
+                    val layoutManager = LinearLayoutManager(activity)
+                    recyclerView.setHasFixedSize(true)
+                    layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                    recyclerView.layoutManager = layoutManager
+                    recyclerView.adapter = body?.let { TripRecyclerAdapter(activity, it) }
+                }
+            }
+        })
         return view
     }
 
