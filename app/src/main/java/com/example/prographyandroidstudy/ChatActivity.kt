@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.activity_consultant.*
 
 class ChatActivity : AppCompatActivity() {
 
@@ -18,7 +17,7 @@ class ChatActivity : AppCompatActivity() {
             ChatData("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         )
         chat_recycler.layoutManager = LinearLayoutManager(this)
-        chat_recycler.adapter = MyChatAdapter(this, list)
+        chat_recycler.adapter = ChatRecyclerAdapter(this, list)
 
         setSupportActionBar(chat_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

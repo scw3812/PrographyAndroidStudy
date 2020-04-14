@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.chat_row.view.*
 
-class MyChatAdapter(val context: Context, val chatList: List<ChatData>): RecyclerView.Adapter<MyChatAdapter.MyChatViewHolder>() {
+class ChatRecyclerAdapter(val context: Context, val chatList: List<ChatData>): RecyclerView.Adapter<ChatRecyclerAdapter.MyChatViewHolder>() {
 
     class MyChatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val recyclerLayout = itemView.recycler_layout

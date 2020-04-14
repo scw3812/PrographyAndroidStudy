@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.TextView
-import android.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.widget.NestedScrollView
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_account.*
 
@@ -42,6 +39,7 @@ class FragmentAccount : Fragment(), View.OnClickListener, AppBarLayout.OnOffsetC
         val view = inflater.inflate(R.layout.fragment_account, container, false)
         view.findViewById<TextView>(R.id.account_service_text).setOnClickListener(this)
         view.findViewById<AppBarLayout>(R.id.account_appbar).addOnOffsetChangedListener(this)
+//        view.findViewById<Toolbar>(R.id.account_toolbar).logo = activity?.resources?.getDrawable(R.mipmap.ic_launcher_round)
         return view
     }
 
