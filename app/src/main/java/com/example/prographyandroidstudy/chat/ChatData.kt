@@ -1,4 +1,4 @@
-package com.example.prographyandroidstudy
+package com.example.prographyandroidstudy.chat
 
 data class ChatData(
     val message : String = "",

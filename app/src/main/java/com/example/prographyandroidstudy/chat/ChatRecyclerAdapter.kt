@@ -1,10 +1,11 @@
-package com.example.prographyandroidstudy
+package com.example.prographyandroidstudy.chat
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prographyandroidstudy.R
 import kotlinx.android.synthetic.main.chat_row.view.*
 
 class ChatRecyclerAdapter(val context: Context, val chatList: List<ChatData>): RecyclerView.Adapter<ChatRecyclerAdapter.MyChatViewHolder>() {
@@ -20,7 +21,9 @@ class ChatRecyclerAdapter(val context: Context, val chatList: List<ChatData>): R
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.chat_row, parent, false)
-        return MyChatViewHolder(view)
+        return MyChatViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int {

@@ -1,23 +1,23 @@
-package com.example.prographyandroidstudy
+package com.example.prographyandroidstudy.chat
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_service.*
+import com.example.prographyandroidstudy.R
+import kotlinx.android.synthetic.main.activity_consultant.*
 
-class ServiceActivity : AppCompatActivity() {
+class ConsultantActivty : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_service)
+        setContentView(R.layout.activity_consultant)
 
-        service_chat.setOnClickListener{
-            startActivity(Intent(this, ConsultantActivty::class.java))
+        consultant_trail.setOnClickListener{
+            startActivity(Intent(this, ChatActivity::class.java))
         }
 
-        setSupportActionBar(service_toolbar)
+        setSupportActionBar(consultant_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

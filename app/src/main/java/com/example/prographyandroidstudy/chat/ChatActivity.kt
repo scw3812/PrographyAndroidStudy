@@ -1,9 +1,10 @@
-package com.example.prographyandroidstudy
+package com.example.prographyandroidstudy.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.prographyandroidstudy.R
 import kotlinx.android.synthetic.main.activity_chat.*
 
 class ChatActivity : AppCompatActivity() {
@@ -17,7 +18,11 @@ class ChatActivity : AppCompatActivity() {
             ChatData("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         )
         chat_recycler.layoutManager = LinearLayoutManager(this)
-        chat_recycler.adapter = ChatRecyclerAdapter(this, list)
+        chat_recycler.adapter =
+            ChatRecyclerAdapter(
+                this,
+                list
+            )
 
         setSupportActionBar(chat_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

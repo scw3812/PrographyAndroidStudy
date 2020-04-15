@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/colorBackground"
-    tools:context=".ServiceActivity">
+    tools:context=".chat.ServiceActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/service_toolbar"
