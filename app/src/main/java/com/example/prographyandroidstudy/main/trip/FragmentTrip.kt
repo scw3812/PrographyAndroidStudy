@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prographyandroidstudy.LocalDatabase
 import com.example.prographyandroidstudy.R
+import com.example.prographyandroidstudy.main.MainActivity
 import com.example.prographyandroidstudy.main.RemoteService
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_trip.*
@@ -20,8 +20,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class FragmentTrip : Fragment(), AppBarLayout.OnOffsetChangedListener {
-
-    private var db:LocalDatabase? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +33,9 @@ class FragmentTrip : Fragment(), AppBarLayout.OnOffsetChangedListener {
         val view = inflater.inflate(R.layout.fragment_trip, container, false)
         view.findViewById<AppBarLayout>(R.id.trip_appbar).addOnOffsetChangedListener(this)
 
-        var body:TripData? = null
+        val recyclerView = view.findViewById<RecyclerView>(R.id.trip_recycler)
+        var body: TripData?
+
         val retrofit = Retrofit.Builder().baseUrl("https://progserver.herokuapp.com")
             .addConverterFactory(GsonConverterFactory.create()).build()
         val result = retrofit.create(RemoteService::class.java).getTrips()
@@ -47,24 +47,14 @@ class FragmentTrip : Fragment(), AppBarLayout.OnOffsetChangedListener {
             override fun onResponse(call: Call<TripData>, response: Response<TripData>) {
                 if(response.isSuccessful){
                     body = response.body()
+                    val layoutManager = LinearLayoutManager(activity)
+                    recyclerView.setHasFixedSize(true)
+                    layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                    recyclerView.layoutManager = layoutManager
+                    recyclerView.adapter = body?.let { TripRecyclerAdapter(activity, it) }
                 }
             }
         })
-
-        db = activity?.let { LocalDatabase.getInstance(it) }
-
-        val r = Runnable {
-
-        }
-        val thread = Thread(r)
-        thread.start()
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.trip_recycler)
-        val layoutManager = LinearLayoutManager(activity)
-        recyclerView.setHasFixedSize(true)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = body?.let { TripRecyclerAdapter(activity, it) }
 
         return view
     }

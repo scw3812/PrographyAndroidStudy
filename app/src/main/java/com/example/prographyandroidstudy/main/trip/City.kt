@@ -1,6 +1,5 @@
 package com.example.prographyandroidstudy.main.trip
 
-
 import com.google.gson.annotations.SerializedName
 
 data class City(
@@ -9,6 +8,5 @@ data class City(
     @SerializedName("no")
     val no: Int,
     @SerializedName("url")
-    val url: String,
-    val isMark: Boolean = false
+    val url: String
 )

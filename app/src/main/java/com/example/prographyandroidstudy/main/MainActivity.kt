@@ -2,10 +2,14 @@ package com.example.prographyandroidstudy.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.room.Room
+import com.example.prographyandroidstudy.BookmarkEntity
+import com.example.prographyandroidstudy.LocalDatabase
 import com.example.prographyandroidstudy.R
 import com.example.prographyandroidstudy.main.account.FragmentAccount
 import com.example.prographyandroidstudy.main.home.FragmentHome
 import com.example.prographyandroidstudy.main.promotion.FragmentPromotion
+import com.example.prographyandroidstudy.main.trip.City
 import com.example.prographyandroidstudy.main.trip.FragmentTrip
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +24,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener{
         supportFragmentManager.beginTransaction().add(
             R.id.main_fragment_container,
             FragmentHome()
-        ).addToBackStack(null).commit()
+        ).commit()
     }
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
