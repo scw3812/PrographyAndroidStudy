@@ -1,10 +1,13 @@
-package com.example.prographyandroidstudy
+package com.example.prographyandroidstudy.main.trip
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
+import com.example.prographyandroidstudy.BaseDao
 
 @Dao
-interface BookmarkDao : BaseDao<BookmarkEntity>{
+interface BookmarkDao :
+    BaseDao<BookmarkEntity> {
     @Query("SELECT * FROM bookmark")
     fun getAll(): List<BookmarkEntity>
 

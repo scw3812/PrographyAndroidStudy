@@ -8,5 +8,6 @@ data class City(
     @SerializedName("no")
     val no: Int,
     @SerializedName("url")
-    val url: String
+    val url: String,
+    var isMark: Boolean = false
 )

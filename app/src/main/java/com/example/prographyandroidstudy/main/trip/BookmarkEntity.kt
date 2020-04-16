@@ -1,4 +1,4 @@
-package com.example.prographyandroidstudy
+package com.example.prographyandroidstudy.main.trip
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
