@@ -14,6 +14,7 @@ import androidx.room.Room
 import com.example.prographyandroidstudy.FavoriteActivity
 import com.example.prographyandroidstudy.LocalDatabase
 import com.example.prographyandroidstudy.R
+import com.example.prographyandroidstudy.main.NetworkHelper
 import com.example.prographyandroidstudy.main.RemoteService
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_trip.*
@@ -50,9 +51,8 @@ class FragmentTrip : Fragment(), AppBarLayout.OnOffsetChangedListener {
         var adapter: TripRecyclerAdapter?
         var recyclerView: RecyclerView? = null
 
-        val retrofit = Retrofit.Builder().baseUrl("https://progserver.herokuapp.com")
-            .addConverterFactory(GsonConverterFactory.create()).build()
-        val result = retrofit.create(RemoteService::class.java).getTrips()
+
+        val result = NetworkHelper.getInstance().getService().getTrips()
         result.enqueue(object : Callback<TripData> {
             override fun onFailure(call: Call<TripData>, t: Throwable) {
 

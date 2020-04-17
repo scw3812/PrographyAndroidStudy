@@ -2,27 +2,62 @@ package com.example.prographyandroidstudy.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prographyandroidstudy.R
+import com.github.nkzawa.emitter.Emitter
+import com.github.nkzawa.socketio.client.IO
+import com.github.nkzawa.socketio.client.Socket
 import kotlinx.android.synthetic.main.activity_chat.*
+import org.json.JSONObject
+import java.net.URISyntaxException
+import kotlin.reflect.typeOf
 
 class ChatActivity : AppCompatActivity() {
+
+    lateinit var socket: Socket
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        var list : List<ChatData> = arrayListOf<ChatData>(
-            ChatData("hello"),
-            ChatData("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        val list = mutableListOf<ChatData>()
+        var adapter = ChatRecyclerAdapter(
+            this,
+            list
         )
+
         chat_recycler.layoutManager = LinearLayoutManager(this)
-        chat_recycler.adapter =
-            ChatRecyclerAdapter(
-                this,
-                list
-            )
+        chat_recycler.adapter = adapter
+
+        try{
+            socket = IO.socket("https://prography6androidstudychat.herokuapp.com")
+        }catch (e : URISyntaxException){
+            e.printStackTrace()
+        }
+        socket.connect()
+
+        socket.on(Socket.EVENT_CONNECT, Emitter.Listener {
+            socket.emit("login", "me")
+            Log.d("login", "connected with me")
+        })
+
+        chat_send_btn.setOnClickListener {
+            val msg = chat_edit_text.text
+            socket.emit("chat", msg)
+            socket.on("chat", object: Emitter.Listener {
+                override fun call(vararg args: Any?) {
+                    val chat = (args[0] as String).split(" : ")
+                    val chatData = ChatData(chat[1], chat[0])
+                    list.add(chatData)
+                    runOnUiThread {
+                        Log.d("chat", list.toString())
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            })
+        }
 
         setSupportActionBar(chat_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

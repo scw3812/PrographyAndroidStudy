@@ -32,10 +32,12 @@ class ChatRecyclerAdapter(val context: Context, val chatList: List<ChatData>): R
 
     override fun onBindViewHolder(holder: MyChatViewHolder, position: Int) {
         val chatData = chatList.get(position)
-        if(chatData.isMe){
+        if(chatData.userId == "me"){
             holder.tripTextView.visibility = View.GONE
             holder.thumbUp.visibility = View.GONE
             holder.thumbDown.visibility = View.GONE
+            holder.messageTextView.setBackgroundResource(R.drawable.corner_radius_chat_me)
+            holder.messageTextView.setTextColor(context.resources.getColor(R.color.colorWhite))
         }
         holder.messageTextView.text = chatData.message
     }
