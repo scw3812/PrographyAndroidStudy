@@ -37,7 +37,7 @@ class ChatActivity : AppCompatActivity() {
             e.printStackTrace()
         }
         socket.connect()
-
+        var flag = true
         socket.on(Socket.EVENT_CONNECT, Emitter.Listener {
             socket.emit("login", "me")
             Log.d("login", "connected with me")
@@ -45,19 +45,29 @@ class ChatActivity : AppCompatActivity() {
 
         chat_send_btn.setOnClickListener {
             val msg = chat_edit_text.text
+            if(!flag){
+                socket.emit("login", "me")
+                flag = true
+            }
             socket.emit("chat", msg)
-            socket.on("chat", object: Emitter.Listener {
-                override fun call(vararg args: Any?) {
-                    val chat = (args[0] as String).split(" : ")
-                    val chatData = ChatData(chat[1], chat[0])
-                    list.add(chatData)
-                    runOnUiThread {
-                        Log.d("chat", list.toString())
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-            })
+            if(flag){
+                socket.emit("login", "you")
+                flag = false
+            }
+            socket.emit("chat", "reply: $msg")
         }
+
+        socket.on("chat", object: Emitter.Listener {
+            override fun call(vararg args: Any?) {
+                val chat = (args[0] as String).split(" : ")
+                val chatData = ChatData(chat[1], chat[0])
+                list.add(chatData)
+                runOnUiThread {
+                    Log.d("chat", list.toString())
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        })
 
         setSupportActionBar(chat_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
