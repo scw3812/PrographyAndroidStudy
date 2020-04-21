@@ -44,8 +44,7 @@ class FragmentTrip : Fragment(), AppBarLayout.OnOffsetChangedListener {
             startActivity(Intent(activity, FavoriteActivity::class.java))
         }
 
-        val db = activity?.let { Room.databaseBuilder(it, LocalDatabase::class.java, "local_db")
-            .build() }
+        val db = activity?.let { LocalDatabase.getInstance(it) }
         val bookmarkDao = db?.BookmarkDao()
         var body: TripData? = null
         var adapter: TripRecyclerAdapter?
